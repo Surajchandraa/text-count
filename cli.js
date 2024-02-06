@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const count = require('text-count');
+const count = require('./src/character_count');
 const fs = require('fs');
 
 let inp= process.argv[2];
@@ -10,7 +10,7 @@ if(inp=="char"){
         console.log("please enter some text")
     }
     else{
-    console.log(count.char_count(inp2));
+    console.log(count.charCount(inp2));
     }
 }
 else if(inp=="word"){
@@ -18,7 +18,7 @@ else if(inp=="word"){
         console.log("please enter some text");
     }
     else{
-        console.log(count.word_count(inp2))
+        console.log(count.wordCount(inp2))
     }
 }
 else if(inp=="sen"){
@@ -26,7 +26,7 @@ else if(inp=="sen"){
         console.log("please enter some text");
     }
     else{
-        console.log(count.sen_count(inp2));
+        console.log(count.senCount(inp2));
     }
 }
 else if(inp=="line"){
@@ -34,7 +34,25 @@ else if(inp=="line"){
         console.log("please enter some text");
     }
     else{
-        console.log(count.line_count(inp2))
+        console.log(count.lineCount(inp2))
+    }
+}
+else if(inp=="most-common-char"){
+    if(!inp2){
+        console.log("please enter some text");
+
+    }
+    else{
+        console.log(count.mostCommonChar(inp2,inp3))
+    }
+}
+else if(inp=="most-common-word"){
+    if(!inp2){
+        console.log("please enter some text");
+
+    }
+    else{
+        console.log(count.mostCommonwords(inp2,inp3))
     }
 }
    
@@ -50,7 +68,7 @@ if(inp=='-f'){
                     console.log("error while reading file");
                 }
                 else{
-                    console.log(count.word_count(data));
+                    console.log(count.wordCount(data));
                 }
             })
         }
@@ -65,7 +83,7 @@ if(inp=='-f'){
                     console.log("error while reading file");
                 }
                 else{
-                    console.log(count.char_count(data));
+                    console.log(count.charCount(data));
                 }
             })
         }
@@ -81,7 +99,7 @@ if(inp=='-f'){
                     console.log("error while reading file");
                 }
                 else{
-                    console.log(count.line_count(data));
+                    console.log(count.lineCount(data));
                 }
             })
         }
@@ -97,7 +115,7 @@ if(inp=='-f'){
                     console.log("error while reading file");
                 }
                 else{
-                    console.log(count.sen_count(data));
+                    console.log(count.senCount(data));
                 }
             })
         }
