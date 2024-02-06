@@ -5,6 +5,7 @@ const fs = require('fs');
 let inp= process.argv[2];
 let inp2=process.argv[3];
 let inp3= process.argv[4];
+let inp4= process.argv[5];
 if(inp=="char"){
     if(!inp2){
         console.log("please enter some text")
@@ -46,7 +47,7 @@ else if(inp=="most-common-char"){
         console.log(count.mostCommonChar(inp2,inp3))
     }
 }
-else if(inp=="most-common-word"){
+else if(inp=="most-common-words"){
     if(!inp2){
         console.log("please enter some text");
 
@@ -109,6 +110,7 @@ if(inp=='-f'){
             console.log("please provide file path");
 
         }
+       
         else{
             fs.readFile(inp3,'utf-8',(err,data)=>{
                 if(err){
@@ -121,4 +123,62 @@ if(inp=='-f'){
         }
 
     }
+    else if(inp2=="most-common-word"){
+        if(!inp3){
+            console.log("please provide a file path");
+        }
+        else{
+            fs.readFile(inp3,'utf-8',(error,result)=>{
+                if(error){
+                    console.log("error while reading file ",error);
+                }
+                else{
+                    console.log(count.mostCommonwords(result,inp4));
+                }
+            })
+        }
+    }
+    else if(inp2=="most-common-char"){
+        if(!inp3){
+            console.log("please provide a file path");
+        }
+        else{
+            fs.readFile(inp3,'utf-8',(error,result)=>{
+                if(error){
+                    console.log("error while reading file ",error);
+                }
+                else{
+                    console.log(count.mostCommonChar(result,inp4));
+                }
+            })
+        }
+    }
+    else{
+        console.log("please select valid option")
+    }
+}
+
+
+
+const printHelp = () => {
+    console.log(`
+    Usage: count [options]
+    
+    Options:
+      -h, --help                           Display this help message
+      char <text>                          Count characters in the provided text
+      word <text>                          Count words in the provided text
+      sen <text>                           Count sentences in the provided text
+      line <text>                          Count lines in the provided text
+      most-common-char <text> [limit]      Find the most common characters in the provided text (optional: specify limit, default is 5)
+      most-common-words <text> [limit]     Find the most common words in the provided text (optional: specify limit, default is 5)
+      -f <option> <filepath>               Read text from a file and perform the specified operation:
+                                           word, char, line, sen, most-common-word, or most-common-char
+    `);
+
+};
+
+if (inp === '-h' || inp === '--help') {
+    printHelp();
+    
 }
