@@ -16,52 +16,71 @@ This is a simple JavaScript utility for analyzing text. It provides functions to
 - most common characters.
 
 ## Usage:
-- To use this utility, you can import the functions into your JavaScript code:
+You can use this package in both Command Line Interface (CLI) mode and non-CLI mode.
 
-```js
-    const count = require('text-count');
+## CLI Mode
 
-    // Example Usage
-    const text = "This is an example text. It has multiple sentences.\nEach sentence is on a new line.";
+In CLI mode, you can use the following commands:
 
-    console.log("Character Count:", count.charCount(text));
-    console.log("Word Count:", count.wordCount(text));
-    console.log("Sentence Count:", count.senCount(text));
-    console.log("Line Count:", count.lineCount(text));
+- `char <text>`: Count characters in the provided text.
+- `word <text>`: Count words in the provided text.
+- `sen <text>`: Count sentences in the provided text.
+- `line <text>`: Count lines in the provided text.
+- `most-common-char <text> [limit]`: Find the most common characters in the provided text (optional: specify limit, default is 5).
+- `most-common-words <text> [limit]`: Find the most common words in the provided text (optional: specify limit, default is 5).
+- `-f <option> <filepath> [limit]`: Read text from a file and perform the specified operation: word, char, line, sen, most-common-word, or most-common-char.
 
-  //  >>Character Count: 83
-  //  >>Word Count: 16
-   // >>Sentence Count: 3
-   // >>Line Count: 2
-
-```
-
-## Count from a file:
-```js
-    const fs = require('fs');
-    const count = require('text-count')
-
-    
-    const filePath = 'example_file.txt';
-
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error("Error reading the file:", err);
-            return;
-        }
-
-        console.log("Character Count:", count.charCount(data));
-        console.log("Word Count:", count.wordCount(data));
-        console.log("Sentence Count:", count.senCount(data));
-        console.log("Line Count:", count.lineCount(data));
-    });
-
-```
-- ***Output***
+For Example:
 ```bash
-Character Count: 97
-Word Count: 18
-Sentence Count: 1
-Line Count: 2
+    count char "Hello, World!"
+# Output: 13
+
+    count word "Hello, World!"
+# Output: 2
+
+    count sen "Hello. World!"
+# Output: 2
+
+    count line "Hello,\nWorld!"
+# Output: 2
+
+    count most-common-char "Hello, World!"
+# Output: { 'l': 3, 'o': 2, 'H': 1, 'e': 1, ',': 1 }
+
+
+    count most-common-char "Hello, World!" 2
+# Output: { 'l': 3, 'o': 2}
+
+    count most-common-words "Hello, World!" 1
+# Output: { 'Hello': 1 }
+
+    count -f word file.txt
+# Output: [word count from the file]
+
+    count -f most-common-char file.txt
+# Output: { 'l': 3, 'o': 2, 'H': 1, 'e': 1, ',': 1 }
+
+    count -f most-common-char file.txt 2
+# Output: { 'l': 3, 'o': 2 }
+
+
+```
+
+## Non-CLI Mode
+
+You can also use the functions directly in your Node.js code:
+```js
+    const count= require('text-count');
+
+// Example usage:
+console.log(count.charCount("Hello, World!")); // Output: 13
+console.log(count.wordCount("Hello, World!")); // Output: 2
+console.log(count.mostCommonChar("Hello, World!",3)); // Output: { 'l': 3, 'o': 2, 'H': 1}
+console.log(count.mostCommonWords("Hello, World!")); // Output: { 'Hello': 1, 'World': 1 }
+console.log(count.lineCount("Hello,\nWorld!\n")); // Output: 2
+console.log(count.senCount("Hello. World!")); // Output: 2
+
+
+
+
 ```
