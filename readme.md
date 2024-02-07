@@ -1,6 +1,20 @@
 # text-count
 This is a simple JavaScript utility for analyzing text. It provides functions to count characters, words, sentences, and lines in a given text.
 
+## Table of Contents
+
+1. [Introduction](#Introduction)
+2. [Installation](#Installation)
+3. [Features](#Features)
+4. [Usage](#Usage)
+    - [CLI Mode](#Cli-mode)
+    - [Non-CLI Mode](#Non-cli-mode)
+
+## Introduction:
+
+This is a simple JavaScript utility for analyzing text. It provides functions to count characters, words, sentences, and lines in a given text.
+
+
 ## Installation:
 
 - ```bash
