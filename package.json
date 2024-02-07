@@ -15,5 +15,11 @@
     "line count"
   ],
   "author": "suraj chandra",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Surajchandraa/text-count.git"
+  },
+  "homepage": "https://github.com/Surajchandraa/text-count"
+  
 }
