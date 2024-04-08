@@ -98,3 +98,6 @@ console.log(count.senCount("Hello. World!")); // Output: 2
 
 
 ```
+
+## Contribution:
+- feel free to contribute. 
